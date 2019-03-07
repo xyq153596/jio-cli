@@ -1,0 +1,21 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "source": {
+    "include": ["plugins", "middleware", "components", "nuxt.config.js"],
+    "exclude": ["node_modules"],
+    "includePattern": ".+\\.js(doc)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "plugins": ["plugins/markdown"],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "opts": {
+    "template": "node_modules/tui-jsdoc-template",
+    "destination": "./doc/"
+  }
+}

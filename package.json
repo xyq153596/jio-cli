@@ -1,0 +1,27 @@
+{
+  "name": "jio-cli",
+  "version": "0.1.0",
+  "description": "",
+  "repository": {
+    "url": "xyq153596/jio-cli",
+    "type": "git"
+  },
+  "bin": {
+    "jio-cli": "./bin/cli.js"
+  },
+  "author": "xyq153596 <xyq153596@163.com> (github.com/xyq153596)",
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {
+    "@babel/core": "^7.3.4",
+    "commander": "^2.19.0",
+    "conf": "^3.0.0",
+    "fast-glob": "^2.2.6",
+    "fs-extra": "^7.0.1",
+    "inquirer": "^6.2.2",
+    "lodash": "^4.17.11",
+    "ora": "^3.2.0",
+    "semver": "^5.6.0"
+  },
+  "devDependencies": {}
+}
