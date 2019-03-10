@@ -57,9 +57,9 @@
 		"doc": "jsdoc -c ./conf.json -R ./README.md"
 	},
 	"dependencies": {
-		"@nuxt-module/ftp-nuxt-module": "^1.1.1",
-		"@nuxt-module/move-nuxt-module": "^1.1.0",
-		"@nuxt-module/version-nuxt-module": "^1.1.1",
+		"ftp-nuxt-module": "^1.1.1",
+		"move-nuxt-module": "^1.1.0",
+		"version-nuxt-module": "^1.1.1",
 		"@nuxtjs/axios": "^5.0.0",
 		"koa": "^2.5.2",
 		"lodash": "^4.17.11",
