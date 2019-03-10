@@ -1,13 +1,7 @@
 {
   "name": "jio-cli",
-  "version": "0.1.6",
+  "version": "0.1.10",
   "description": "",
-  "files": [
-    "bin",
-    "lib",
-    "template",
-    "update"
-  ],
   "repository": {
     "url": "xyq153596/jio-cli",
     "type": "git"
