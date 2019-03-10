@@ -4,3 +4,4 @@
 /doc/*
 /server/*
 /nuxt.config.js
+./.vscode/*

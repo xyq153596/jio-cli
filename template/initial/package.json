@@ -3,37 +3,37 @@
 	"description": "My best Nuxt.js project",
 	"project": {
 		"dirName": "nuxt",
-		"git": "get://www.ss.com",
+		"git": "",
 		"mode": "",
 		"member": {
-			"FE": "傻逼2",
-			"PM": "zhangjun",
-			"RD": "zhangjun",
+			"FE": "",
+			"PM": "",
+			"RD": "",
 			"UI": "",
 			"QA": ""
 		},
 		"version": {
-			"dev": "1.0.122",
-			"prod": "2.0.0",
+			"dev": "",
+			"prod": "1.0.0",
 			"release": "1.0.0"
 		},
 		"apiBaseUrl": {
-			"mock": "http://api.mock.com",
-			"dev": "http://api.dev.com",
-			"prod": "http://api.prod.com",
-			"release": "http://api.release.com"
+			"mock": "",
+			"dev": "",
+			"prod": "",
+			"release": ""
 		},
 		"ftp": {
-			"username": "root",
-			"password": "XyDJ9ai3z$vT9CXu",
+			"username": "",
+			"password": "",
 			"port": "",
-			"host": "47.96.189.222",
-			"dir": "/www"
+			"host": "",
+			"dir": ""
 		},
 		"cdn": {
-			"prod": "http://www.prod.com",
-			"release": "http://www.release.com",
-			"dev": "http://localhost:8000"
+			"prod": "",
+			"release": "",
+			"dev": ""
 		},
 		"outputDir": {
 			"dev": "dev",
@@ -57,6 +57,9 @@
 		"doc": "jsdoc -c ./conf.json -R ./README.md"
 	},
 	"dependencies": {
+		"@nuxt-module/ftp-nuxt-module": "^1.1.1",
+		"@nuxt-module/move-nuxt-module": "^1.1.0",
+		"@nuxt-module/version-nuxt-module": "^1.1.1",
 		"@nuxtjs/axios": "^5.0.0",
 		"koa": "^2.5.2",
 		"lodash": "^4.17.11",
@@ -82,8 +85,6 @@
 		"less": "^3.9.0",
 		"less-loader": "^4.1.0",
 		"nodemon": "^1.11.0",
-		"postcss": "^7.0.14",
-		"postcss-loader": "^3.0.0",
 		"prettier": "1.14.3",
 		"tui-jsdoc-template": "^1.2.2"
 	},
