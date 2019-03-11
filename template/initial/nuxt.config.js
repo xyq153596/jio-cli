@@ -12,6 +12,14 @@ const isBuildDev = process.env.BUILD_ENV === 'dev'
 const isDev = process.env.NODE_ENV === 'development'
 // const isBuildProd = process.env.BUILD_ENV === 'prod'
 // const isBuildRelease = process.env.BUILD_ENV === 'release'
+
+function checkOptions(){
+  if(pkg.project.cdn[buildEnv]===""){
+    console.error(`请先在package.json中设置${buildEnv}的cdn`)
+    process.exit(1)
+  }
+}
+checkOptions()
 /**
  *  版本号末尾递增
  */
