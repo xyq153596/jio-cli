@@ -66,9 +66,9 @@ module.exports = {
     ? ['@nuxtjs/axios']
     : [
         '@nuxtjs/axios',
-        '@nuxt-module/ftp-nuxt-module',
-        '@nuxt-module/version-nuxt-module',
-        '@nuxt-module/move-nuxt-module'
+        'ftp-nuxt-module',
+        'version-nuxt-module',
+        'move-nuxt-module'
       ],
   /**
    * nuxt模块配置
@@ -115,7 +115,7 @@ module.exports = {
          * @param {*} config webpack配置对象
          * @param {*} ctx 上下文
          */
-      
+
         extend(config, ctx) {
           // Run ESLint on save
           if (ctx.isDev && ctx.isClient) {
