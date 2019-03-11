@@ -5,13 +5,13 @@ npm i jio-cli -g
 ```
 ## 命令
 ```base
- $ jio-cli update 更新单个项目
- $ jio-cli update --all 更新所有项目
- $ jio-cli create 创建项目
- $ jio-cli create --local 创建本地template
- $ jio-cli db 显示项目列表
- $ jio-cli db --path 显示db路径
- $ jio-cli -V 显示脚手架版本
+ jio-cli update 更新单个项目
+ jio-cli update --all 更新所有项目
+ jio-cli create 创建项目
+ jio-cli create --local 创建本地template
+ jio-cli db 显示项目列表
+ jio-cli db --path 显示db路径
+ jio-cli -V 显示脚手架版本
 ```
 ## update更新文件
 ```javascript
