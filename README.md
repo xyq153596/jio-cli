@@ -19,7 +19,7 @@ module.exports = {
   actions: [
     {
       //需要做处理的文件
-      targetPath: "./files/index.js",
+      path: "./files/index.js",
       type: "u",//a:添加 u:更新 r:替换
       //run 可以是string或 async function
       // 当是async function时，表示对目标文件做处理
