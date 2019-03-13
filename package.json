@@ -1,7 +1,14 @@
 {
   "name": "jio-cli",
-  "version": "0.1.15",
+  "version": "0.1.21",
   "description": "",
+  "files": [
+    ".npmrc",
+    "bin",
+    "lib",
+    "template",
+    "update"
+  ],
   "repository": {
     "url": "xyq153596/jio-cli",
     "type": "git"
