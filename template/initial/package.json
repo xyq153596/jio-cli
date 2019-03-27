@@ -82,8 +82,9 @@
 		"eslint-plugin-vue": "^4.0.0",
 		"jsdoc": "^3.5.5",
 		"koa-static": "^5.0.0",
-		"less": "^3.9.0",
-		"less-loader": "^4.1.0",
+		"node-sass": "^4.11.0",
+    "sass": "^1.17.3",
+		"sass-loader": "^7.1.0",
 		"nodemon": "^1.11.0",
 		"prettier": "1.14.3",
 		"tui-jsdoc-template": "^1.2.2"
