@@ -3,7 +3,7 @@ module.exports = {
   /**
    * 自定义插件
    */
-  plugins: ['@/plugins/elementUI'],
+  plugins: [],
   babel: {
     plugins: [
 
