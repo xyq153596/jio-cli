@@ -1,12 +1,17 @@
 module.exports = {
   mode: 'hash',
-  webpack: {
-    base: {},
-    dev: {},
-    build: {}
+  /**
+   * 自定义插件
+   */
+  plugins: ['@/plugins/elementUI'],
+  babel: {
+    plugins: [
+
+    ]
   },
-  babel: {},
-  proxy: '/api',
+  proxy: {
+
+  },
   /**
    * 设置head，meta
    * [https://zh.nuxtjs.org/api/configuration-head](https://zh.nuxtjs.org/api/configuration-head)
@@ -14,7 +19,9 @@ module.exports = {
   head: {
     title: ''
   },
-  loading: {},
+  loading: {
+    color: '#3B8070'
+  },
   /**
    * 全局css导入
    * [https://zh.nuxtjs.org/api/configuration-css](https://zh.nuxtjs.org/api/configuration-css)

@@ -3,8 +3,10 @@
  * @description 全局nuxt配置文件
  */
 
+const path = require('path')
 const pkg = require('./package')
 const customConfig = require('./nuxt.comfig.custom')
+
 const buildEnv = process.env.BUILD_ENV
 // 是否构建测试环境
 const isBuildDev = process.env.BUILD_ENV === 'dev'
@@ -12,7 +14,6 @@ const isBuildDev = process.env.BUILD_ENV === 'dev'
 const isDev = process.env.NODE_ENV === 'development'
 // const isBuildProd = process.env.BUILD_ENV === 'prod'
 // const isBuildRelease = process.env.BUILD_ENV === 'release'
-
 function checkOptions() {
   if (!isDev && pkg.project.cdn[buildEnv] === '') {
     console.error(`请先在package.json中设置${buildEnv}的cdn`)
@@ -32,7 +33,6 @@ pkg.project.version.nextDev = (function(v = pkg.project.version.dev) {
   vSplit[vSplit.length - 1] = Number(vSplit[vSplit.length - 1]) + 1
   return vSplit.join('.')
 })()
-
 module.exports = {
   router: {
     mode: customConfig.mode
@@ -56,7 +56,7 @@ module.exports = {
   /**
    * 全局加载的css
    */
-  css: customConfig.css,
+  css: [].concat(customConfig.css),
   /**
    * 环境变量
    */
@@ -65,7 +65,9 @@ module.exports = {
    * #### vue的插件管理
    * [https://zh.nuxtjs.org/api/configuration-plugins](https://zh.nuxtjs.org/api/configuration-plugins)
    */
-  plugins: ['@/plugins/api', '@/plugins/directive', '@/plugins/filter'],
+  plugins: ['@/plugins/api', '@/plugins/directive', '@/plugins/filter'].concat(
+    customConfig.plugins
+  ),
   /**
    * #### nuxt的模块管理
    * [https://zh.nuxtjs.org/api/configuration-modules](https://zh.nuxtjs.org/api/configuration-modules)
@@ -93,14 +95,7 @@ module.exports = {
   global: {
     buildEnv: buildEnv
   },
-  proxy:
-    typeof customConfig.proxy === 'string'
-      ? ((api = customConfig.proxy) => {
-          let proxy = {}
-          proxy[api] = pkg.project.apiBaseUrl[buildEnv]
-          return proxy
-        })()
-      : customConfig.proxy,
+  proxy: customConfig.proxy,
 
   /**
    * 构建配置
@@ -115,9 +110,7 @@ module.exports = {
           ? `${pkg.project.cdn[buildEnv]}/${pkg.project.dirName}/${
               pkg.project.version.nextDev
             }`
-          : `${pkg.project.cdn[buildEnv]}/${pkg.project.dirName}/${
-              pkg.project.version[buildEnv]
-            }`,
+          : `${pkg.project.cdn[buildEnv]}/${pkg.project.dirName}`,
         /**
          * 扩展webpack配置
          * @param {*} config webpack配置对象
@@ -139,7 +132,9 @@ module.exports = {
          * 配置babel
          */
         babel: {
-          plugins: ['syntax-dynamic-import', 'lodash']
+          plugins: ['syntax-dynamic-import', 'lodash'].concat(
+            customConfig.babel.plugins
+          )
         },
         /**
          * 配置webpack插件
@@ -153,12 +148,19 @@ module.exports = {
      * 设置打包路径
      */
     dir: isBuildDev
-      ? `dist/${pkg.project.outputDir[buildEnv]}/${pkg.project.dirName}/${
+      ? path.join(
+          'dist',
+          pkg.project.outputDir[buildEnv] || '',
+          pkg.project.dirName,
           pkg.project.version.nextDev
-        }`
-      : `dist/${pkg.project.outputDir[buildEnv]}/assets/${
-          pkg.project.dirName
-        }/${pkg.project.version[buildEnv]}`
+        )
+      : path.join(
+          'dist',
+          pkg.project.outputDir[buildEnv] || '',
+          'assets',
+          pkg.project.dirName,
+          pkg.project.version[buildEnv] || ''
+        )
     // subFolders: false
   }
 }
