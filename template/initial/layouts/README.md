@@ -11,4 +11,4 @@
 ### 个性化布局命名规则
 > layout-xxx.vue
 
-> [the documentation](https://nuxtjs.org/guide/views#layouts).
+> [the documentation](https://zh.nuxtjs.org/guide/views#layouts).

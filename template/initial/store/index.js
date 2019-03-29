@@ -13,3 +13,8 @@ export const actions = {
     ctx.commit('sayHello')
   }
 }
+
+/**
+ * 关闭vuex严格模式
+ */
+export const strict = false

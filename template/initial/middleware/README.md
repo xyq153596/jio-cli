@@ -5,4 +5,4 @@
 ## 命名规则
 > mid-xxx.js
 
-[the documentation](https://nuxtjs.org/guide/routing#middleware).
+[the documentation](https://zh.nuxtjs.org/guide/routing#middleware).

@@ -5,4 +5,4 @@
 ## 命名规则
 > page-xxx.vue
 
-[the documentation](https://nuxtjs.org/guide/routing).
+[the documentation](https://zh.nuxtjs.org/guide/routing).
