@@ -60,7 +60,9 @@ export default {
    * 验证路由参数
    * https://zh.nuxtjs.org/api/pages-validate
    */
-  validate({ params }) {},
+  validate({ params }) {
+    return true
+  },
   /**
    * 中间件
    * https://zh.nuxtjs.org/api/pages-middleware
