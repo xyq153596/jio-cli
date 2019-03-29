@@ -10,8 +10,8 @@
       </h2>
 
       <div class="links">
-        <a 
-          href="http://127.0.0.1:1000" 
+        <a
+          href="http://127.0.0.1:1000"
           target="_blank">开发文档</a>
         <a
           href="https://github.com/nuxt/nuxt.js"
@@ -26,8 +26,46 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
-
+/**
+ * 页面组件配置
+ * https://zh.nuxtjs.org/guide/views/
+ */
 export default {
+  name: 'Index',
+  /**
+   * 头部设置
+   * https://zh.nuxtjs.org/api/pages-head
+   */
+  head() {
+    return {
+      title: '这里设置标题'
+    }
+  },
+  /**
+   * 自定义布局文件
+   * https://zh.nuxtjs.org/api/pages-layout
+   */
+  layout: 'default',
+  /**
+   * 页面加载条
+   * https://zh.nuxtjs.org/api/configuration-loading/
+   */
+  loading: '',
+  /**
+   * 自定义过渡动画效果
+   * https://zh.nuxtjs.org/api/pages-transition
+   */
+  transition: '',
+  /**
+   * 验证路由参数
+   * https://zh.nuxtjs.org/api/pages-validate
+   */
+  validate({ params }) {},
+  /**
+   * 中间件
+   * https://zh.nuxtjs.org/api/pages-middleware
+   */
+  middleware: '',
   components: {
     Logo
   },
@@ -41,7 +79,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="scss">
 .container {
   min-height: 100vh;
   display: flex;

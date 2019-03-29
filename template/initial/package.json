@@ -48,7 +48,7 @@
 		"build:dev": "cross-env BUILD_ENV=dev nuxt build  --modern=client",
 		"build:release": "cross-env BUILD_ENV=release nuxt build",
 		"build:prod": "cross-env BUILD_ENV=prod nuxt build",
-		"generate:dev": "cross-env BUILD_ENV=dev nuxt generate --modern=client",
+		"generate:dev": "cross-env BUILD_ENV=dev nuxt generate",
 		"generate:release": "cross-env BUILD_ENV=release nuxt generate",
 		"generate:prod": "cross-env BUILD_ENV=prod nuxt generate",
 		"start": "cross-env NODE_ENV=production node server/index.js",

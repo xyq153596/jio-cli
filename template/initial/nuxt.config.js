@@ -85,7 +85,7 @@ module.exports = {
    */
   axios: {
     baseURL: pkg.project.apiBaseUrl[buildEnv],
-    proxy: isDev
+    proxy: customConfig.proxyEnable
   },
   moveModuleOptions: {
     outputDir: pkg.project.outputDir[buildEnv],
@@ -110,7 +110,9 @@ module.exports = {
           ? `${pkg.project.cdn[buildEnv]}/${pkg.project.dirName}/${
               pkg.project.version.nextDev
             }`
-          : `${pkg.project.cdn[buildEnv]}/${pkg.project.dirName}`,
+          : `${pkg.project.cdn[buildEnv]}/${pkg.project.dirName}/${
+              pkg.project.version[buildEnv]
+            }`,
         /**
          * 扩展webpack配置
          * @param {*} config webpack配置对象
