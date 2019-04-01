@@ -1,3 +1,8 @@
+/**
+ * this.$axios.$get() 发送get请求
+ * this.$axios.$post() 发送post请求
+ * this.$api 得到api接口
+ */
 export const state = () => ({
   say: ''
 })

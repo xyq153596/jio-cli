@@ -7,6 +7,24 @@ const path = require('path')
 const pkg = require('./package')
 const customConfig = require('./nuxt.comfig.custom')
 
+/**
+ * babel 插件列表
+ */
+const APP_BABEL_PLUGINS = ['syntax-dynamic-import', 'lodash']
+/**
+ * app插件列表
+ */
+const APP_PLUGINS = [
+  '@/plugins/api',
+  '@/plugins/directive',
+  '@/plugins/filter',
+  '@/plugins/axios'
+]
+/**
+ * app全局样式列表
+ */
+const APP_CSS = []
+
 const buildEnv = process.env.BUILD_ENV
 // 是否构建测试环境
 const isBuildDev = process.env.BUILD_ENV === 'dev'
@@ -14,13 +32,11 @@ const isBuildDev = process.env.BUILD_ENV === 'dev'
 const isDev = process.env.NODE_ENV === 'development'
 // const isBuildProd = process.env.BUILD_ENV === 'prod'
 // const isBuildRelease = process.env.BUILD_ENV === 'release'
-function checkOptions() {
-  if (!isDev && pkg.project.cdn[buildEnv] === '') {
-    console.error(`请先在package.json中设置${buildEnv}的cdn`)
-    process.exit(1)
-  }
+
+if (!isDev && pkg.project.cdn[buildEnv] === '') {
+  console.error(`请先在package.json中设置${buildEnv}的cdn`)
+  process.exit(1)
 }
-checkOptions()
 /**
  *  版本号末尾递增
  */
@@ -33,6 +49,7 @@ pkg.project.version.nextDev = (function(v = pkg.project.version.dev) {
   vSplit[vSplit.length - 1] = Number(vSplit[vSplit.length - 1]) + 1
   return vSplit.join('.')
 })()
+
 module.exports = {
   router: {
     mode: customConfig.mode
@@ -56,7 +73,7 @@ module.exports = {
   /**
    * 全局加载的css
    */
-  css: [].concat(customConfig.css),
+  css: APP_CSS.concat(customConfig.css),
   /**
    * 环境变量
    */
@@ -65,9 +82,7 @@ module.exports = {
    * #### vue的插件管理
    * [https://zh.nuxtjs.org/api/configuration-plugins](https://zh.nuxtjs.org/api/configuration-plugins)
    */
-  plugins: ['@/plugins/api', '@/plugins/directive', '@/plugins/filter'].concat(
-    customConfig.plugins
-  ),
+  plugins: APP_PLUGINS.concat(customConfig.plugins),
   /**
    * #### nuxt的模块管理
    * [https://zh.nuxtjs.org/api/configuration-modules](https://zh.nuxtjs.org/api/configuration-modules)
@@ -100,50 +115,49 @@ module.exports = {
   /**
    * 构建配置
    */
-  build: isDev
-    ? {}
-    : {
-        /**
-         * 设置（线上/测试）cdn路径
-         */
-        publicPath: isBuildDev
-          ? `${pkg.project.cdn[buildEnv]}/${pkg.project.dirName}/${
-              pkg.project.version.nextDev
-            }`
-          : `${pkg.project.cdn[buildEnv]}/${pkg.project.dirName}/${
-              pkg.project.version[buildEnv]
-            }`,
-        /**
-         * 扩展webpack配置
-         * @param {*} config webpack配置对象
-         * @param {*} ctx 上下文
-         */
-
-        extend(config, ctx) {
-          // Run ESLint on save
-          if (ctx.isDev && ctx.isClient) {
-            config.module.rules.push({
-              enforce: 'pre',
-              test: /\.(js|vue)$/,
-              loader: 'eslint-loader',
-              exclude: /(node_modules)/
-            })
-          }
-        },
-        /**
-         * 配置babel
-         */
-        babel: {
-          plugins: ['syntax-dynamic-import', 'lodash'].concat(
-            customConfig.babel.plugins
-          )
-        },
-        /**
-         * 配置webpack插件
-         */
-        plugins: [],
-        extractCSS: true
+  build: (function() {
+    let options = {
+      /**
+       * 扩展webpack配置
+       * @param {*} config webpack配置对象
+       * @param {*} ctx 上下文
+       */
+      extend(config, ctx) {
+        // Run ESLint on save
+        if (ctx.isDev && ctx.isClient) {
+          config.module.rules.push({
+            enforce: 'pre',
+            test: /\.(js|vue)$/,
+            loader: 'eslint-loader',
+            exclude: /(node_modules)/
+          })
+        }
       },
+      babel: {
+        plugins: APP_BABEL_PLUGINS.concat(customConfig.babel.plugins)
+      },
+      plugins: []
+    }
+
+    if (isDev) {
+      //开发阶段
+    } else {
+      options.extractCSS = true
+      //构建阶段
+      if (isBuildDev) {
+        // 构建测试阶段
+        options.publicPath = `${pkg.project.cdn[buildEnv]}/${
+          pkg.project.dirName
+        }/${pkg.project.version.nextDev}`
+      } else {
+        // 构建预发/正式阶段
+        options.publicPath = `${pkg.project.cdn[buildEnv]}/${
+          pkg.project.dirName
+        }/${pkg.project.version[buildEnv]}`
+      }
+    }
+    return options
+  })(),
 
   generate: {
     /**
