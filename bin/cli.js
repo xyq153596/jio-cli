@@ -12,13 +12,28 @@ const Jio = require("../lib/index");
  * jio-cli db 显示项目列表
  * jio-cli db --path 显示db路径
  * jio-cli -V 显示脚手架版本
+ * jio-cli register 注册生成器
  */
 const jio = new Jio();
+program
+  .command("init [option]")
+  .description("注册一个生成器项目")
+  .action((cmd, options) => {
+    jio.initGenerator();
+  })
+  .on("--help", () => {
+    console.log("");
+    console.log("举个🌰:");
+    console.log("  $ jio-cli update -a");
+    console.log("  $ jio-cli update --all");
+  });
+
 program
   .command("update [option]")
   .description("更新单个项目")
   .option("-a,--all", "更新所有项目")
-  .action((cmd, options) => {
+  .action(async (cmd, options) => {
+    await jio.init();
     if (options.all) {
       jio.updateAll().catch(error => {
         logger.error(error);
@@ -39,7 +54,8 @@ program
   .command("create [option]")
   .description("创建项目")
   .option("-l,--local", "创建内部项目")
-  .action((cmd, options) => {
+  .action(async (cmd, options) => {
+    await jio.init();
     if (options.local) {
       jio.createLocalProject().catch(error => {
         logger.error(error);
@@ -60,7 +76,8 @@ program
   .command("db [option]")
   .description("显示项目列表")
   .option("-p,--path", "显示db路径")
-  .action((cmd, options) => {
+  .action(async (cmd, options) => {
+    await jio.init();
     if (options.path) {
       jio.showDBPath();
     } else {
