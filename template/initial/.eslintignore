@@ -1,7 +1,0 @@
-/node_modules/*
-/dist/*
-/.nuxt/*
-/doc/*
-/server/*
-/nuxt.config.js
-./.vscode/*
