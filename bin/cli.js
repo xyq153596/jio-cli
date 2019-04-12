@@ -32,10 +32,15 @@ program
   .command("update [option]")
   .description("更新单个项目")
   .option("-a,--all", "更新所有项目")
+  .option("-l,--local", "更新本地内部项目")
   .action(async (cmd, options) => {
     await jio.init();
     if (options.all) {
       jio.updateAll().catch(error => {
+        logger.error(error);
+      });
+    } else if (options.local) {
+      jio.updateLocalProject().catch(error => {
         logger.error(error);
       });
     } else {
