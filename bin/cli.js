@@ -96,4 +96,12 @@ program
     console.log("  $ jio-cli db --path");
   });
 
+program
+  .command("test")
+  .description("测试本地内部项目")
+  .action(async (cmd, options) => {
+    await jio.init();
+    jio.testLocalProject();
+  })
+
 program.version(version).parse(process.argv);
